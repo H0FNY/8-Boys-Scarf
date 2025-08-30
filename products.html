@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - 8-Boys-Scarf</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+<div class="flex flex-col justify-start items-center w-full overflow-hidden">
+        <header class="flex justify-between items-center w-[90%] md:w-[80%] h-[65px] pt-5">
+            <h1 class="text-xl md:text-2xl font-bold">8-Boys-Scarf</h1>
+
+            <nav class="hidden md:flex gap-6 text-sm md:text-base">
+                <a href="#" class="hover:text-gray-600">Home</a>
+                <a href="products.html" class="hover:text-gray-600">Products</a>
+                <a href="#" class="hover:text-gray-600">New Arrivals</a>
+            </nav>
+
+            <button
+                class="hidden md:block bg-black text-white px-4 md:px-6 py-2 rounded-xl shadow-md hover:bg-gray-800">
+                Sign Up
+            </button>
+
+            <button class="md:hidden text-2xl">
+                <i class="fas fa-bars"></i>
+            </button>
+        </header>
+    </div>
+
+    <!-- Breadcrumb -->
+    <div class="w-[90%] md:w-[80%] mx-auto py-4">
+        <div class="flex items-center text-sm text-gray-500">
+            <a href="#" class="hover:text-black">Home</a>
+            <i class="fas fa-chevron-right mx-2 text-xs"></i>
+            <span class="text-black">Products</span>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="w-[90%] md:w-[80%] mx-auto pb-12">
+        <div class="flex flex-col lg:flex-row gap-8">
+            
+            <!-- Sidebar Filters -->
+            <aside class="lg:w-1/4 bg-white rounded-lg shadow-sm p-6 h-fit">
+                <h3 class="text-lg font-semibold mb-6">Filters</h3>
+                
+                <!-- Size Filter -->
+                <div class="mb-8">
+                    <h4 class="font-medium mb-4">Size</h4>
+                    <div class="grid grid-cols-3 gap-2">
+                        <button class="size-btn border border-gray-300 px-3 py-2 text-sm rounded hover:bg-black hover:text-white transition-colors" data-size="XS">XS</button>
+                        <button class="size-btn border border-gray-300 px-3 py-2 text-sm rounded hover:bg-black hover:text-white transition-colors" data-size="S">S</button>
+                        <button class="size-btn border border-gray-300 px-3 py-2 text-sm rounded hover:bg-black hover:text-white transition-colors" data-size="M">M</button>
+                        <button class="size-btn border border-gray-300 px-3 py-2 text-sm rounded hover:bg-black hover:text-white transition-colors" data-size="L">L</button>
+                        <button class="size-btn border border-gray-300 px-3 py-2 text-sm rounded hover:bg-black hover:text-white transition-colors" data-size="XL">XL</button>
+                        <button class="size-btn border border-gray-300 px-3 py-2 text-sm rounded hover:bg-black hover:text-white transition-colors" data-size="XXL">XXL</button>
+                    </div>
+                </div>
+
+                <!-- Color Filter -->
+                <div class="mb-8">
+                    <h4 class="font-medium mb-4">Color</h4>
+                    <div class="grid grid-cols-6 gap-2">
+                        <button class="color-btn w-8 h-8 rounded-full bg-red-500 border-2 border-transparent hover:border-gray-400 transition-colors" data-color="red"></button>
+                        <button class="color-btn w-8 h-8 rounded-full bg-orange-500 border-2 border-transparent hover:border-gray-400 transition-colors" data-color="orange"></button>
+                        <button class="color-btn w-8 h-8 rounded-full bg-yellow-500 border-2 border-transparent hover:border-gray-400 transition-colors" data-color="yellow"></button>
+                        <button class="color-btn w-8 h-8 rounded-full bg-green-500 border-2 border-transparent hover:border-gray-400 transition-colors" data-color="green"></button>
+                        <button class="color-btn w-8 h-8 rounded-full bg-blue-500 border-2 border-transparent hover:border-gray-400 transition-colors" data-color="blue"></button>
+                        <button class="color-btn w-8 h-8 rounded-full bg-purple-500 border-2 border-transparent hover:border-gray-400 transition-colors" data-color="purple"></button>
+                        <button class="color-btn w-8 h-8 rounded-full bg-pink-500 border-2 border-transparent hover:border-gray-400 transition-colors" data-color="pink"></button>
+                        <button class="color-btn w-8 h-8 rounded-full bg-gray-800 border-2 border-transparent hover:border-gray-400 transition-colors" data-color="black"></button>
+                        <button class="color-btn w-8 h-8 rounded-full bg-white border-2 border-gray-300 hover:border-gray-400 transition-colors" data-color="white"></button>
+                        <button class="color-btn w-8 h-8 rounded-full bg-gray-400 border-2 border-transparent hover:border-gray-400 transition-colors" data-color="gray"></button>
+                        <button class="color-btn w-8 h-8 rounded-full bg-amber-600 border-2 border-transparent hover:border-gray-400 transition-colors" data-color="brown"></button>
+                        <button class="color-btn w-8 h-8 rounded-full bg-indigo-600 border-2 border-transparent hover:border-gray-400 transition-colors" data-color="navy"></button>
+                    </div>
+                </div>
+
+                <!-- Price Filter -->
+                <div class="mb-8">
+                    <h4 class="font-medium mb-4">Price</h4>
+                    <div class="space-y-3">
+                        <label class="flex items-center">
+                            <input type="radio" name="price" value="0-50" class="price-radio mr-2">
+                            <span class="text-sm">$0 - $50</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="price" value="50-100" class="price-radio mr-2">
+                            <span class="text-sm">$50 - $100</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="price" value="100-150" class="price-radio mr-2">
+                            <span class="text-sm">$100 - $150</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="price" value="150+" class="price-radio mr-2">
+                            <span class="text-sm">$150+</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Brand Filter -->
+                <div class="mb-8">
+                    <h4 class="font-medium mb-4">Brand</h4>
+                    <div class="space-y-3">
+                        <label class="flex items-center">
+                            <input type="checkbox" class="brand-checkbox mr-2" value="Dubetta Digital">
+                            <span class="text-sm">Dubetta Digital</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="brand-checkbox mr-2" value="Dubetta Satin">
+                            <span class="text-sm">Dubetta Satin</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="brand-checkbox mr-2" value="Malaysian">
+                            <span class="text-sm">Malaysian</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="brand-checkbox mr-2" value="Kuwaity Gradient">
+                            <span class="text-sm">Kuwaity Gradient</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="brand-checkbox mr-2" value="Digital Wooden">
+                            <span class="text-sm">Digital Wooden</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Collections -->
+                <div class="mb-8">
+                    <h4 class="font-medium mb-4">Collections</h4>
+                    <div class="space-y-3">
+                        <label class="flex items-center">
+                            <input type="checkbox" class="collection-checkbox mr-2" value="New arrivals">
+                            <span class="text-sm">New arrivals</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="collection-checkbox mr-2" value="Best sellers">
+                            <span class="text-sm">Best sellers</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="collection-checkbox mr-2" value="Sale items">
+                            <span class="text-sm">Sale items</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Tags -->
+                <div class="mb-8">
+                    <h4 class="font-medium mb-4">Tags</h4>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tag-btn px-3 py-1 bg-gray-100 text-sm rounded-full cursor-pointer hover:bg-gray-200 transition-colors" data-tag="Woman">Woman</span>
+                        <span class="tag-btn px-3 py-1 bg-gray-100 text-sm rounded-full cursor-pointer hover:bg-gray-200 transition-colors" data-tag="Man">Man</span>
+                        <span class="tag-btn px-3 py-1 bg-gray-100 text-sm rounded-full cursor-pointer hover:bg-gray-200 transition-colors" data-tag="Dress">Dress</span>
+                        <span class="tag-btn px-3 py-1 bg-gray-100 text-sm rounded-full cursor-pointer hover:bg-gray-200 transition-colors" data-tag="Top">Top</span>
+                        <span class="tag-btn px-3 py-1 bg-gray-100 text-sm rounded-full cursor-pointer hover:bg-gray-200 transition-colors" data-tag="Scarf">Scarf</span>
+                        <span class="tag-btn px-3 py-1 bg-gray-100 text-sm rounded-full cursor-pointer hover:bg-gray-200 transition-colors" data-tag="Elegant">Elegant</span>
+                        <span class="tag-btn px-3 py-1 bg-gray-100 text-sm rounded-full cursor-pointer hover:bg-gray-200 transition-colors" data-tag="Casual">Casual</span>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Main Content Area -->
+            <main class="lg:w-3/4">
+                <!-- Sort and View Options -->
+                <div class="bg-white rounded-lg shadow-sm p-4 mb-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+                    <div class="flex items-center gap-4">
+                        <span class="text-sm text-gray-600">Showing</span>
+                        <select id="itemsPerPage" class="border border-gray-300 rounded px-3 py-1 text-sm">
+                            <option value="9">9</option>
+                            <option value="12">12</option>
+                            <option value="24">24</option>
+                            <option value="36">36</option>
+                        </select>
+                        <span class="text-sm text-gray-600">of <span id="totalProducts">36</span> products</span>
+                    </div>
+                    
+                    <div class="flex items-center gap-4">
+                        <span class="text-sm text-gray-600">Sort by:</span>
+                        <select id="sortBy" class="border border-gray-300 rounded px-3 py-2 text-sm">
+                            <option value="default">Default</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="name">Name: A to Z</option>
+                            <option value="newest">Newest First</option>
+                        </select>
+                        
+                        <div class="flex border border-gray-300 rounded">
+                            <button id="gridView" class="p-2 bg-black text-white rounded-l">
+                                <i class="fas fa-th"></i>
+                            </button>
+                            <button id="listView" class="p-2 hover:bg-gray-100 rounded-r">
+                                <i class="fas fa-list"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Products Grid -->
+                <div id="productsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+
+                <!-- Pagination -->
+                <div class="flex justify-center items-center gap-2 mt-8">
+                    <button id="prevPage" class="px-3 py-2 border border-gray-300 rounded hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div id="pageNumbers" class="flex gap-1"></div>
+                    <button id="nextPage" class="px-3 py-2 border border-gray-300 rounded hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </main>
+        </div>
+    </div>
+<script src="script.js"></script>
+</body>
+
+</html>
