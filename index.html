@@ -12,72 +12,12 @@
 </head>
 
 <body class="w-full h-full p-0 m-0">
-    <!-- <div class="flex flex-col justify-start items-center w-full min-h-screen overflow-hidden">
-
-        
-        <header class="flex justify-between items-center w-[90%] md:w-[80%] h-[65px] pt-5">
-            <h1 class="text-xl md:text-2xl font-bold">8-Boys-Scarf</h1>
-
-            
-            <nav class="hidden md:flex gap-6 text-sm md:text-base">
-                <a href="#" class="hover:text-gray-600">Home</a>
-                <a href="#" class="hover:text-gray-600">Products</a>
-                <a href="#" class="hover:text-gray-600">New Arrivals</a>
-            </nav>
-
-            <button
-                class="hidden md:block bg-black text-white px-4 md:px-6 py-2 rounded-xl shadow-md hover:bg-gray-800">
-                Sign Up
-            </button>
-
-            
-            <button class="md:hidden text-2xl">
-                <i class="fas fa-bars"></i>
-            </button>
-        </header>
-
-        
-        <main class="flex flex-col items-center w-full py-5 overflow-hidden">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-3 w-[90%] md:w-[80%] h-auto md:h-[90vh]">
-
-                
-                <div class="rounded-2xl bg-gray-100 flex justify-center overflow-hidden h-[40vh] md:h-full">
-                    <img src="assets/Scarfs/1 (1).jpg" alt="Model 1" class="w-full h-full object-cover" />
-                </div>
-
-                
-                <div class="flex flex-col items-center justify-between text-center gap-4 ">
-                    <div class="flex justify-center rounded-2xl overflow-hidden w-full h-[25vh] md:min-h-[20%]">
-                        <img src="assets/Scarfs/1 (2).jpg" alt="Group" class="w-full h-full object-cover" />
-                    </div>
-                    <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight">ULTIMATE</h2>
-                    <h1 class="text-5xl md:text-6xl font-bold text-gray-700">SALE</h1>
-                    <p class="text-gray-500 uppercase text-xs md:text-sm tracking-wide">New Collection</p>
-                    <button
-                        class="bg-black text-white px-6 md:px-8 py-2 md:py-3 rounded-xl shadow-lg hover:bg-gray-800">
-                        Shop Now
-                    </button>
-                    <div class="flex justify-center rounded-2xl overflow-hidden w-full h-[25vh] md:min-h-[30%]">
-                        <img src="assets/Scarfs/1 (3).jpg" alt="Group" class="w-full h-full object-cover" />
-                    </div>
-                </div>
-
-                
-                <div class="rounded-2xl bg-gray-100 flex justify-center overflow-hidden h-[40vh] md:h-full">
-                    <img src="assets/Scarfs/1 (4).jpg" alt="Model 2" class="w-full h-full object-cover" />
-                </div>
-            </div>
-        </main>
-    </div> -->
-
-    <div class="flex flex-col justify-start items-center w-full min-h-screen overflow-hidden">
-
-        <!-- Header -->
-        <header class="flex justify-between items-center w-[90%] md:w-[80%] h-[65px] pt-5">
+    <div class="flex flex-col justify-start items-center w-full min-h-screen overflow-hidden mb-5">
+        <header class="flex justify-between items-center w-[90%] md:w-[80%] h-[65px]">
             <h1 class="text-xl md:text-2xl font-bold">8-Boys-Scarf</h1>
 
             <nav class="hidden md:flex gap-6 text-sm md:text-base">
-                <a href="#" class="hover:text-gray-600">Home</a>
+                <a href="index.html" class="hover:text-gray-600">Home</a>
                 <a href="products.html" class="hover:text-gray-600">Products</a>
                 <a href="#" class="hover:text-gray-600">New Arrivals</a>
             </nav>
@@ -140,40 +80,26 @@
         </div>
     </section>
 
-    <section class="max-w-7xl w-[90%] md:w-[80%] mx-auto px-4 md:px-6 py-12">
+  <section class="max-w-7xl w-[90%] md:w-[80%] mx-auto px-4 md:px-6 py-12">
+    <div class="text-center mb-10">
+      <h2 class="text-2xl md:text-3xl font-bold text-gray-900">Products</h2>
+      <p class="text-gray-500 mt-2 text-sm md:text-base">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque duis ultrices sollicitudin aliquam.</p>
+    </div>
 
-        <div class="text-center mb-10">
-            <h2 class="text-2xl md:text-3xl font-bold text-gray-900">New Arrivals</h2>
-            <p class="text-gray-500 mt-2 text-sm md:text-base">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque duis ultrices sollicitudin aliquam.
-            </p>
-        </div>
+    <div id="categoryButtons" class="flex flex-wrap justify-center gap-3 mb-12">
+      <button data-category="Dubetta Digital" class="px-4 md:px-5 py-2 bg-black text-white rounded-full">Dubetta Digital</button>
+      <button data-category="Dubetta Satin" class="px-4 md:px-5 py-2 bg-gray-100 text-gray-600 rounded-full hover:bg-gray-200">Dubetta Satin</button>
+      <button data-category="Malaysian" class="px-4 md:px-5 py-2 bg-gray-100 text-gray-600 rounded-full hover:bg-gray-200">Malaysian</button>
+      <button data-category="Kuwaity Gradient" class="px-4 md:px-5 py-2 bg-gray-100 text-gray-600 rounded-full hover:bg-gray-200">Kuwaity Gradient</button>
+      <button data-category="Digital Wooden" class="px-4 md:px-5 py-2 bg-gray-100 text-gray-600 rounded-full hover:bg-gray-200">Digital Wooden</button>
+    </div>
 
+    <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"></div>
 
-        <div id="categoryButtons" class="flex flex-wrap justify-center gap-3 mb-12">
-            <button data-category="Dubetta Digital" class="px-4 md:px-5 py-2 bg-black text-white rounded-full">Dubetta
-                Digital</button>
-            <button data-category="Dubetta Satin"
-                class="px-4 md:px-5 py-2 bg-gray-100 text-gray-600 rounded-full hover:bg-gray-200">Dubetta
-                Satin</button>
-            <button data-category="Malaysian"
-                class="px-4 md:px-5 py-2 bg-gray-100 text-gray-600 rounded-full hover:bg-gray-200">Malaysian</button>
-            <button data-category="Kuwaity Gradient"
-                class="px-4 md:px-5 py-2 bg-gray-100 text-gray-600 rounded-full hover:bg-gray-200">Kuwaity
-                Gradient</button>
-            <button data-category="Digital Wooden"
-                class="px-4 md:px-5 py-2 bg-gray-100 text-gray-600 rounded-full hover:bg-gray-200">Digital
-                Wooden</button>
-        </div>
-
-
-        <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"></div>
-
-        <div class="flex justify-center mt-12">
-            <button class="px-6 md:px-8 py-2 md:py-3 bg-black text-white rounded-full hover:bg-gray-800">View
-                More</button>
-        </div>
-    </section>
+    <div class="flex justify-center mt-12">
+      <button class="px-6 md:px-8 py-2 md:py-3 bg-black text-white rounded-full hover:bg-gray-800">View More</button>
+    </div>
+  </section>
 
 
     <section class="max-w-7xl mx-auto px-4 md:px-6 py-16 text-center">
@@ -200,28 +126,19 @@
 
     <!-- Newsletter Section -->
     <section class="relative w-[90%] md:w-[80%] mx-auto py-12 md:py-16 text-center min-h-[400px] md:h-[500px]">
-        <!-- Left Person -->
         <img src="assets/Scarfs/2 (3).png" alt="Model Left"
             class="hidden md:block absolute left-0 bottom-0 h-[400px] md:h-[500px]">
-
-        <!-- Right Person -->
         <img src="assets/Scarfs/2 (1).png" alt="Model Right"
             class="hidden md:block absolute right-0 bottom-0 h-[400px] md:h-[500px]">
-
-        <!-- Content -->
         <div class="relative max-w-lg mx-auto">
             <h2 class="text-2xl md:text-3xl font-bold text-gray-900">Subscribe To Our Newsletter</h2>
             <p class="text-gray-500 mt-3 text-sm md:text-base">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             </p>
-
-            <!-- Email Input -->
             <div class="mt-6">
                 <input type="email" placeholder="michael@ymail.com"
                     class="w-full px-4 py-3 border border-gray-200 rounded-lg shadow-sm focus:ring-2 focus:ring-black outline-none">
             </div>
-
-            <!-- Button -->
             <div class="mt-4">
                 <button class="px-5 md:px-6 py-2 md:py-3 bg-black text-white rounded-lg shadow hover:bg-gray-800">
                     Subscribe Now
@@ -235,10 +152,8 @@
         <div
             class="max-w-7xl mx-auto px-4 md:px-6 flex flex-col md:flex-row justify-between items-center text-gray-600 text-xs md:text-sm">
 
-            <!-- Logo -->
             <div class="font-bold text-base md:text-lg mb-4 md:mb-0">FASCO</div>
 
-            <!-- Links -->
             <div class="flex flex-wrap justify-center gap-4 md:gap-6">
                 <a href="#" class="hover:text-black">Support Center</a>
                 <a href="#" class="hover:text-black">Invoicing</a>
@@ -247,8 +162,6 @@
                 <a href="#" class="hover:text-black">Blog</a>
                 <a href="#" class="hover:text-black">FAQ’s</a>
             </div>
-
-            <!-- Copyright -->
             <div class="mt-4 md:mt-0 text-gray-400 text-xs md:text-sm">
                 Copyright © 2025 Ahofny. All Rights Reserved.
             </div>

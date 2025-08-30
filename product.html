@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details - FASCO</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white font-sans">
+  <!-- Container -->
+  <div class="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 lg:grid-cols-2 gap-10">
+    <!-- Left: Product Gallery -->
+    <div class="flex gap-4">
+      <!-- Thumbnails -->
+      <div class="flex flex-col gap-3 w-20">
+        <img src="assets/Scarfs/DD/DD (1).jpg" alt="thumb" class="border cursor-pointer hover:border-black rounded-xl">
+        <img src="assets/Scarfs/DD/DD (2).jpg" alt="thumb" class="border cursor-pointer hover:border-black rounded-xl">
+        <img src="assets/Scarfs/DD/DD (3).jpg" alt="thumb" class="border cursor-pointer hover:border-black rounded-xl">
+        <img src="assets/Scarfs/DD/DD (4).jpg" alt="thumb" class="border cursor-pointer hover:border-black rounded-xl">
+      </div>
+      <!-- Main Image -->
+      <div class="flex-1">
+        <img id="mainImage" src="assets/Scarfs/DD/DD (1).jpg" alt="Product" class="w-full rounded-xl">
+      </div>
+    </div>
+
+    <!-- Right: Product Info -->
+    <div class="space-y-6">
+      <!-- Title & Price -->
+      <div>
+        <h2 class="text-2xl font-semibold">Denim Jacket</h2>
+        <div class="flex items-center gap-2 mt-2">
+          <p class="text-xl font-bold text-gray-900">$32.00</p>
+          <p class="line-through text-gray-500">$49.00</p>
+        </div>
+        <p class="text-sm text-gray-600 mt-1">⭐ 5.0 (120 reviews)</p>
+      </div>
+
+      <!-- Sale Countdown -->
+      <div class="bg-red-50 border border-red-200 p-3 rounded">
+        <p class="text-red-600 font-medium">Hurry up! Sale ends in:</p>
+        <p id="countdown" class="text-lg font-bold text-red-700 mt-1">00 : 06 : 59 : 47</p>
+      </div>
+
+      <!-- Size Options -->
+      <div>
+        <p class="font-medium mb-2">Size:</p>
+        <div class="flex gap-3">
+          <button class="border px-4 py-2 hover:bg-black hover:text-white">S</button>
+          <button class="border px-4 py-2 hover:bg-black hover:text-white">M</button>
+          <button class="border px-4 py-2 hover:bg-black hover:text-white">L</button>
+          <button class="border px-4 py-2 hover:bg-black hover:text-white">XL</button>
+        </div>
+      </div>
+
+      <!-- Colors -->
+      <div>
+        <p class="font-medium mb-2">Color:</p>
+        <div class="flex gap-3">
+          <button class="w-8 h-8 rounded-full bg-black border-2 border-gray-300"></button>
+          <button class="w-8 h-8 rounded-full bg-pink-400 border-2 border-gray-300"></button>
+          <button class="w-8 h-8 rounded-full bg-blue-400 border-2 border-gray-300"></button>
+        </div>
+      </div>
+
+      <!-- Quantity -->
+      <div>
+        <p class="font-medium mb-2">Quantity:</p>
+        <div class="flex items-center border w-32 justify-between px-3 py-2">
+          <button id="decrease" class="text-lg">-</button>
+          <span id="quantity">1</span>
+          <button id="increase" class="text-lg">+</button>
+        </div>
+      </div>
+
+      <!-- Add to Cart -->
+      <div>
+        <button class="w-full bg-black text-white py-3 rounded hover:bg-gray-800 transition">Add to Cart</button>
+      </div>
+
+      <!-- Shipping Info -->
+      <div class="border-t pt-4 space-y-2 text-sm text-gray-600">
+        <p>✔️ Estimated delivery: 3-5 days</p>
+        <p>✔️ Free shipping on orders over $50</p>
+      </div>
+
+      <!-- Payment Methods -->
+      <div class="pt-4">
+        <img src="https://via.placeholder.com/300x40" alt="Payment methods">
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Quantity Control
+    const qtyElement = document.getElementById('quantity');
+    let qty = 1;
+    document.getElementById('increase').addEventListener('click', () => {
+      qty++;
+      qtyElement.innerText = qty;
+    });
+    document.getElementById('decrease').addEventListener('click', () => {
+      if (qty > 1) qty--;
+      qtyElement.innerText = qty;
+    });
+
+    // Countdown Timer (example: 6 hours)
+    function startCountdown(duration) {
+      let timer = duration, hours, minutes, seconds;
+      setInterval(() => {
+        hours = parseInt(timer / 3600, 10);
+        minutes = parseInt((timer % 3600) / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+
+        document.getElementById('countdown').textContent =
+          `${hours.toString().padStart(2,'0')} : ${minutes.toString().padStart(2,'0')} : ${seconds.toString().padStart(2,'0')}`;
+
+        if (--timer < 0) timer = duration;
+      }, 1000);
+    }
+    window.onload = () => startCountdown(6 * 60 * 60); // 6 hours
+  </script>
+</body>
+</html>

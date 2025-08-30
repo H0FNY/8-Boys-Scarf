@@ -443,13 +443,32 @@ const products = [
   }
 ];
 
-// Category-based product grid functionality
+// =========================
+// Helpers
+// =========================
+function formatStars(rating) {
+  const full = Math.floor(rating);
+  const empty = 5 - full;
+  return "★".repeat(full) + "☆".repeat(empty);
+}
+
+function colorDotHTML(color) {
+  // use inline background for robustness
+  if (!color) return "";
+  const isWhite = color.toLowerCase() === "white";
+  const style = `background:${color};${isWhite ? "border:1px solid #e5e7eb;" : ""}`;
+  return `<span class="w-4 h-4 rounded-full border" style="${style}"></span>`;
+}
+
+// =========================
+// Category product grid (index / products pages)
+// =========================
 function initCategoryGrid() {
   const productGrid = document.getElementById("productGrid");
   const categoryButtons = document.querySelectorAll("#categoryButtons button");
 
   if (!productGrid || categoryButtons.length === 0) {
-    console.warn("Category grid elements not found");
+    // nothing to do on a page without these elements
     return;
   }
 
@@ -458,91 +477,50 @@ function initCategoryGrid() {
     const filtered = products.filter(p => p.category === category);
 
     filtered.forEach(product => {
-      // Star ratings
-      const fullStars = Math.floor(product.rating);
-      const halfStar = product.rating % 1 !== 0;
-      const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
+      // stars and price
+      const stars = formatStars(product.rating);
+      const priceHTML = product.originalPrice
+        ? `<p class="font-bold text-lg">$${product.price.toFixed(2)}</p><p class="text-sm line-through text-gray-400">$${product.originalPrice.toFixed(2)}</p>`
+        : `<p class="font-bold text-lg">$${product.price.toFixed(2)}</p>`;
 
-      let stars = "★".repeat(fullStars);
-      if (halfStar) stars += "☆";
-      stars += "☆".repeat(emptyStars);
+      // sizes chips
+      const sizeHTML = product.sizes ? product.sizes.map(s=>`<span class="px-2 py-1 border rounded text-xs">${s}</span>`).join(" ") : "";
 
-      // Sizes
-      const sizeHTML = product.sizes
-        ? product.sizes.map(size => `<span class="px-2 py-1 border rounded text-xs">${size}</span>`).join(" ")
-        : "";
+      // colors
+      const colorHTML = product.colors ? product.colors.map(c => colorDotHTML(c)).join(" ") : "";
 
-      // Colors - Fixed color display
-      const colorHTML = product.colors
-        ? product.colors.map(color => {
-            const colorClass = getColorClass(color);
-            return `<span class="w-4 h-4 rounded-full border ${colorClass}"></span>`;
-          }).join(" ")
-        : "";
-
-      // Badge (NEW or SALE)
+      // badge
       let badge = "";
-      if (product.isNew) {
-        badge = `<span class="absolute top-2 left-2 bg-green-600 text-white text-xs px-2 py-1 rounded">NEW</span>`;
-      } else if (product.onSale) {
-        badge = `<span class="absolute top-2 left-2 bg-red-600 text-white text-xs px-2 py-1 rounded">SALE</span>`;
-      }
+      if (product.isNew) badge = `<span class="absolute top-2 left-2 bg-green-600 text-white text-xs px-2 py-1 rounded">NEW</span>`;
+      else if (product.onSale) badge = `<span class="absolute top-2 left-2 bg-red-600 text-white text-xs px-2 py-1 rounded">SALE</span>`;
 
-      // Price display
-      const priceHTML = `
-        <p class="font-bold text-lg">$${product.price.toFixed(2)}</p>
-        ${product.originalPrice ? `<p class="text-sm line-through text-gray-400">$${product.originalPrice.toFixed(2)}</p>` : ""}
-      `;
-
+      // Wrap each card with a link to the product page and pass id in query string
       productGrid.innerHTML += `
-        <div class="relative bg-white rounded-xl shadow p-4">
+        <a href="product.html?id=${product.id}" class="block relative bg-white rounded-xl shadow p-4 hover:shadow-lg transition">
           ${badge}
           <img src="${product.image}" alt="${product.name}" class="w-full h-[280px] object-cover rounded-lg">
-          
           <div class="mt-4">
             <h3 class="font-semibold text-lg">${product.name}</h3>
             <p class="text-sm text-gray-500">${product.category}</p>
-
             <div class="flex items-center mt-2 text-yellow-400">${stars}</div>
             <p class="text-sm text-gray-500 mt-1">(${product.reviews.toLocaleString()} reviews)</p>
-
             <div class="flex items-center mt-3 gap-2">${priceHTML}</div>
-
             <p class="${product.stockColor} text-sm mt-1">${product.stock}</p>
-
             <div class="mt-3 flex gap-2">${sizeHTML}</div>
             <div class="mt-2 flex gap-2">${colorHTML}</div>
           </div>
-        </div>
+        </a>
       `;
     });
-  }
-
-  // Helper function to get proper color classes
-  function getColorClass(color) {
-    const colorMap = {
-      'red': 'bg-red-500',
-      'blue': 'bg-blue-500',
-      'green': 'bg-green-500',
-      'yellow': 'bg-yellow-500',
-      'purple': 'bg-purple-500',
-      'pink': 'bg-pink-500',
-      'orange': 'bg-orange-500',
-      'black': 'bg-gray-800',
-      'gray': 'bg-gray-500',
-      'white': 'bg-white border-gray-300'
-    };
-    return colorMap[color] || 'bg-gray-400';
   }
 
   // Default load first category
   const firstCategory = categoryButtons[0]?.getAttribute("data-category") || "Dubetta Digital";
   renderProducts(firstCategory);
 
-  // Handle button clicks
+  // Click handlers for category buttons
   categoryButtons.forEach(btn => {
     btn.addEventListener("click", () => {
-      // Update active style
       categoryButtons.forEach(b => {
         b.classList.remove("bg-black", "text-white");
         b.classList.add("bg-gray-100", "text-gray-600");
@@ -550,21 +528,18 @@ function initCategoryGrid() {
       btn.classList.add("bg-black", "text-white");
       btn.classList.remove("bg-gray-100", "text-gray-600");
 
-      // Show products
       const category = btn.getAttribute("data-category");
       renderProducts(category);
     });
   });
 }
 
-// Hero slider functionality
+// =========================
+// Hero slider for home page
+// =========================
 function initHeroSlider() {
   const grid = document.getElementById("hero-grid");
-  
-  if (!grid) {
-    console.warn("Hero grid element not found");
-    return;
-  }
+  if (!grid) return;
 
   const slots = [
     document.createElement("div"),
@@ -573,21 +548,17 @@ function initHeroSlider() {
   ];
 
   slots.forEach((slot, i) => {
-    slot.className =
-      "rounded-2xl bg-gray-100 flex justify-center overflow-hidden h-[40vh] md:h-full relative";
+    slot.className = "rounded-2xl bg-gray-100 flex justify-center overflow-hidden h-[40vh] md:h-full relative";
     grid.appendChild(slot);
   });
 
-  // Middle slot custom style
-  slots[1].className =
-    "flex flex-col items-center justify-between text-center gap-4 overflow-hidden";
+  // middle slot style
+  slots[1].className = "flex flex-col items-center justify-between text-center gap-4 overflow-hidden";
 
-  // Divide products into groups
   const leftImages = products.slice(0, 4);
   const middleImages = products.slice(4, 8);
   const rightImages = products.slice(8, 11);
 
-  // Generic smooth auto slider
   function startSlider(images, container, interval = 2500, withContent = false) {
     const track = document.createElement("div");
     track.className = "flex transition-transform duration-700 ease-in-out h-full w-full";
@@ -598,26 +569,23 @@ function initHeroSlider() {
     if (withContent) {
       images.forEach((img, i) => {
         const slide = document.createElement("div");
-        slide.className =
-          "flex flex-col items-center justify-between text-center gap-4 w-full flex-shrink-0";
+        slide.className = "flex flex-col items-center justify-between text-center gap-4 w-full flex-shrink-0";
 
         const topImg = document.createElement("img");
         topImg.src = img.image;
-        topImg.className =
-          "w-full h-[25vh] md:min-h-[20%] object-cover rounded-2xl";
+        topImg.className = "w-full h-[25vh] md:min-h-[20%] object-cover rounded-2xl";
 
         const title = document.createElement("div");
         title.innerHTML = `
           <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight">ULTIMATE</h2>
           <h1 class="text-5xl md:text-6xl font-bold text-gray-700">SALE</h1>
           <p class="text-gray-500 uppercase text-xs md:text-sm tracking-wide">New Collection</p>
-          <button class="bg-black text-white px-6 md:px-8 py-2 md:py-3 rounded-xl shadow-lg hover:bg-gray-800">Shop Now</button>
+          <a href="products.html" class="mt-2 bg-black text-white px-6 md:px-8 py-2 md:py-3 rounded-xl shadow-lg inline-block">Shop Now</a>
         `;
 
         const bottomImg = document.createElement("img");
         bottomImg.src = images[(i + 1) % images.length].image;
-        bottomImg.className =
-          "w-full h-[25vh] md:min-h-[30%] object-cover rounded-2xl";
+        bottomImg.className = "w-full h-[25vh] md:min-h-[30%] object-cover rounded-2xl";
 
         slide.appendChild(topImg);
         slide.appendChild(title);
@@ -634,7 +602,7 @@ function initHeroSlider() {
       });
     }
 
-    // Clone first and last slide for smooth infinite effect
+    // clones for smooth loop
     const firstClone = slides[0].cloneNode(true);
     const lastClone = slides[slides.length - 1].cloneNode(true);
 
@@ -644,8 +612,6 @@ function initHeroSlider() {
 
     let index = 1;
     const totalSlides = slides.length;
-
-    // Set initial position
     track.style.transform = `translateX(-${index * 100}%)`;
 
     function move() {
@@ -668,12 +634,18 @@ function initHeroSlider() {
     setInterval(move, interval);
   }
 
-  // Start sliders
   startSlider(leftImages, slots[0], 4000, false);
   startSlider(middleImages, slots[1], 5000, true);
   startSlider(rightImages, slots[2], 3500, false);
 }
 
+// =========================
+// Initialize on DOM ready
+// =========================
+
+
+
+/////////////////
 // Product filtering and pagination functionality
 function initProductFiltering() {
   let currentPage = 1;
