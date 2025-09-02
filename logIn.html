@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - FASCO</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body class="min-h-screen bg-gray-50 flex">
+    <!-- Left Side - Colorful Image -->
+    <div class="hidden lg:flex lg:w-1/2 overflow-hidden">
+        <!-- Model Image -->
+        <div class="relative z-10 flex items-center justify-center w-full h-full p-12">
+            <img src="assets/Scarfs/1 (3).jpg" alt="Fashion Model"
+                class="max-w-sm h-auto rounded-2xl shadow-2xl object-cover transform rotate-3 hover:rotate-0 transition-transform duration-500">
+        </div>
+    </div>
+
+    <!-- Right Side - Login Form -->
+    <div class="w-full lg:w-1/2 flex items-center justify-center p-8 lg:p-12">
+        <div class="w-full max-w-md">
+            <!-- Logo -->
+            <div class="text-center mb-8">
+                <h1 class="text-3xl font-bold text-gray-900">8-Boys-Scarf</h1>
+            </div>
+
+            <!-- Form Header -->
+            <div class="text-center mb-8">
+                <h2 class="text-2xl font-semibold text-gray-900 mb-2">Sign In</h2>
+            </div>
+
+            <!-- Social Login Buttons -->
+            <div class="flex flex-row  mb-6 gap-3">
+                <button
+                    class="w-full flex items-center justify-center px-4 py-3 border border-gray-300 rounded-lg shadow-sm bg-white text-gray-700 hover:bg-gray-50 transition-colors">
+                    <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google"
+                        class="w-5 h-5 mr-3">
+                    <span class="text-sm font-medium">Sign up with Google</span>
+                </button>
+
+                <button
+                    class="w-full flex items-center justify-center px-4 py-3 border border-gray-300 rounded-lg shadow-sm bg-white text-gray-700 hover:bg-gray-50 transition-colors">
+                    <div class="w-5 h-5 mr-3 bg-red-500 rounded flex items-center justify-center">
+                        <i class="fas fa-envelope text-white text-xs"></i>
+                    </div>
+                    <span class="text-sm font-medium">Sign up with Email</span>
+                </button>
+            </div>
+
+            <!-- Divider -->
+            <div class="relative mb-6">
+                <div class="absolute inset-0 flex items-center">
+                    <div class="w-full border-t border-gray-300"></div>
+                </div>
+                <div class="relative flex justify-center text-sm">
+                    <span class="px-2 bg-gray-50 text-gray-500">OR</span>
+                </div>
+            </div>
+
+            <!-- Login Form -->
+            <form class="space-y-4" id="loginForm">
+                <!-- Email Field -->
+                <div>
+                    <input type="email" id="email" name="email" required
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent outline-none transition-colors"
+                        placeholder="Email">
+                    <div class="text-red-500 text-sm mt-1 hidden" id="emailError">Please enter a valid email address
+                    </div>
+                </div>
+
+                <!-- Password Field -->
+                <div class="relative">
+                    <input type="password" id="password" name="password" required
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent outline-none transition-colors"
+                        placeholder="Password">
+                    <button type="button" class="absolute inset-y-0 right-0 pr-3 flex items-center"
+                        onclick="togglePassword()">
+                        <i class="fas fa-eye text-gray-400 hover:text-gray-600" id="passwordToggle"></i>
+                    </button>
+                    <div class="text-red-500 text-sm mt-1 hidden" id="passwordError">Password is required</div>
+                </div>
+
+                <!-- Sign In Button -->
+                <button type="submit"
+                    class="w-full bg-black text-white py-3 px-4 rounded-lg font-medium hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                    id="submitBtn">
+                    Sign In
+                </button>
+            </form>
+            <!-- Forgot Password -->
+
+            <div class="w-full text-right">
+                <a href="#" class="text-blue-600 hover:text-blue-500 text-sm">Forgot Password?</a>
+            </div>
+
+            <!-- Register Link -->
+            <div class="flex flex-row items-centers  text-center justify-center mt-6 gap-5 border-gray-200 rounded-lg">
+                
+                    <span class="text-sm">Don't have an account?</span>
+                    <button class="text-blue-600 hover:text-blue-500 font-medium text-sm" id="registerBtn">
+                        Register Now
+                    </button>
+                
+            </div>
+
+
+
+            
+
+            <!-- Terms -->
+            <div class="text-center mt-6">
+                <p class="text-xs text-gray-500">
+                    <a href="#" class="hover:text-gray-700">8-Boys-Scarf Terms & Conditions</a>
+                </p>
+            </div>
+
+            <!-- Success Message (Hidden by default) -->
+            <div id="successMessage"
+                class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                <div class="bg-white rounded-lg p-6 max-w-sm mx-4">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-check text-green-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-2">Welcome Back!</h3>
+                        <p class="text-gray-600 text-sm mb-4">You have successfully signed in to FASCO.</p>
+                        <button onclick="closeSuccessMessage()"
+                            class="bg-black text-white px-6 py-2 rounded-lg hover:bg-gray-800 transition-colors">
+                            Continue
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Error Message (Hidden by default) -->
+            <div id="errorMessage"
+                class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                <div class="bg-white rounded-lg p-6 max-w-sm mx-4">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-times text-red-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-2">Login Failed</h3>
+                        <p class="text-gray-600 text-sm mb-4" id="errorText">Invalid email or password. Please try
+                            again.</p>
+                        <button onclick="closeErrorMessage()"
+                            class="bg-black text-white px-6 py-2 rounded-lg hover:bg-gray-800 transition-colors">
+                            Try Again
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Password visibility toggle
+        function togglePassword() {
+            const passwordField = document.getElementById('password');
+            const toggleIcon = document.getElementById('passwordToggle');
+
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                toggleIcon.className = 'fas fa-eye-slash text-gray-400 hover:text-gray-600';
+            } else {
+                passwordField.type = 'password';
+                toggleIcon.className = 'fas fa-eye text-gray-400 hover:text-gray-600';
+            }
+        }
+
+        // Email validation
+        function validateEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        // Show/hide error messages
+        function showError(fieldId, show) {
+            const errorElement = document.getElementById(fieldId + 'Error');
+            const inputElement = document.getElementById(fieldId);
+
+            if (show) {
+                errorElement.classList.remove('hidden');
+                inputElement.classList.add('border-red-500');
+                inputElement.classList.remove('border-gray-300');
+            } else {
+                errorElement.classList.add('hidden');
+                inputElement.classList.remove('border-red-500');
+                inputElement.classList.add('border-gray-300');
+            }
+        }
+
+        // Real-time email validation
+        document.getElementById('email').addEventListener('input', function () {
+            const email = this.value;
+            if (email && !validateEmail(email)) {
+                showError('email', true);
+            } else {
+                showError('email', false);
+            }
+        });
+
+        // Real-time password validation
+        document.getElementById('password').addEventListener('input', function () {
+            const password = this.value;
+            if (password.length > 0) {
+                showError('password', false);
+            }
+        });
+
+        // Form submission
+        document.getElementById('loginForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            let isValid = true;
+
+            // Validate email
+            if (!email || !validateEmail(email)) {
+                showError('email', true);
+                isValid = false;
+            } else {
+                showError('email', false);
+            }
+
+            // Validate password
+            if (!password) {
+                showError('password', true);
+                isValid = false;
+            } else {
+                showError('password', false);
+            }
+
+            if (isValid) {
+                // Show loading state
+                const submitBtn = document.getElementById('submitBtn');
+                const originalText = submitBtn.innerHTML;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Signing In...';
+                submitBtn.disabled = true;
+
+                // Simulate API call
+                setTimeout(() => {
+                    // Reset button
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+
+                    // Demo: Check if credentials match demo account
+                    if (email === 'demo@fasco.com' && password === 'Demo123!') {
+                        // Show success message
+                        document.getElementById('successMessage').classList.remove('hidden');
+                    } else {
+                        // Show error message
+                        document.getElementById('errorMessage').classList.remove('hidden');
+                    }
+                }, 2000);
+            }
+        });
+
+        // Close success message
+        function closeSuccessMessage() {
+            document.getElementById('successMessage').classList.add('hidden');
+            // Redirect to dashboard or main page
+            window.location.href = '#dashboard';
+        }
+
+        // Close error message
+        function closeErrorMessage() {
+            document.getElementById('errorMessage').classList.add('hidden');
+        }
+
+        // Register button click
+        document.getElementById('registerBtn').addEventListener('click', function () {
+            // Redirect to sign up page
+            alert('Redirecting to sign up page...');
+        });
+
+        // Social login buttons
+        document.querySelectorAll('button').forEach(button => {
+            if (button.innerHTML.includes('Google') || button.innerHTML.includes('Email')) {
+                button.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const provider = this.innerHTML.includes('Google') ? 'Google' : 'Email';
+                    alert(`${provider} authentication would be handled here`);
+                });
+            }
+        });
+
+        // Demo credentials hint
+        setTimeout(() => {
+            const emailField = document.getElementById('email');
+            const passwordField = document.getElementById('password');
+
+            // Add a subtle hint about demo credentials
+            emailField.addEventListener('focus', function () {
+                if (!this.value) {
+                    this.placeholder = 'Try: demo@fasco.com';
+                }
+            });
+
+            passwordField.addEventListener('focus', function () {
+                if (!this.value) {
+                    this.placeholder = 'Try: Demo123!';
+                }
+            });
+        }, 3000);
+
+        // Add some interactive animations
+        document.addEventListener('DOMContentLoaded', function () {
+            // Fade in animation
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease-in-out';
+
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+    </script>
+</body>
+
+</html>

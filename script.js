@@ -559,9 +559,9 @@ function initHeroSlider() {
 
   slots[1].className = "flex flex-col items-center justify-between text-center gap-4 overflow-hidden";
 
-  const leftImages = products.slice(0, 4);
-  const middleImages = products.slice(4, 8);
-  const rightImages = products.slice(8, 11);
+  const leftImages = products.slice(0, 10);
+  const middleImages = products.slice(2, 20);
+  const rightImages = products.slice(3, 26);
 
   function startSlider(images, container, interval = 2500, withContent = false) {
     if (!images || images.length === 0 || !container) {
@@ -1116,3 +1116,31 @@ function initializeApp() {
 
 // Initialize the application
 initializeApp();
+
+    // Quantity Control
+    const qtyElement = document.getElementById('quantity');
+    let qty = 1;
+    document.getElementById('increase').addEventListener('click', () => {
+      qty++;
+      qtyElement.innerText = qty;
+    });
+    document.getElementById('decrease').addEventListener('click', () => {
+      if (qty > 1) qty--;
+      qtyElement.innerText = qty;
+    });
+
+    // Countdown Timer (example: 6 hours)
+    function startCountdown(duration) {
+      let timer = duration, hours, minutes, seconds;
+      setInterval(() => {
+        hours = parseInt(timer / 3600, 10);
+        minutes = parseInt((timer % 3600) / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+
+        document.getElementById('countdown').textContent =
+          `${hours.toString().padStart(2,'0')} : ${minutes.toString().padStart(2,'0')} : ${seconds.toString().padStart(2,'0')}`;
+
+        if (--timer < 0) timer = duration;
+      }, 1000);
+    }
+    window.onload = () => startCountdown(6 * 60 * 60); // 6 hours
