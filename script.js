@@ -466,7 +466,7 @@ function navigateToProduct(productId) {
 }
 
 // =========================
-// Category product grid (index / products pages)
+// Category product grid (home / products pages)
 // =========================
 function initCategoryGrid() {
   const productGrid = document.getElementById("productGrid");
@@ -754,6 +754,86 @@ function initProductFiltering() {
     };
     return colorMap[color] || 'bg-gray-400';
   }
+
+
+  function initInstagramSlider() {
+            const instagramTrack = document.getElementById('instagramTrack');
+            if (!instagramTrack) return;
+
+            // Get random selection of products for Instagram display
+            const shuffledProducts = [...products].sort(() => 0.5 - Math.random());
+            const selectedProducts = shuffledProducts.slice(0, 8); // Take 8 random products
+            
+            // Create duplicate set for seamless infinite scroll
+            const allImages = [...selectedProducts, ...selectedProducts];
+
+            // Clear existing content
+            instagramTrack.innerHTML = '';
+
+            // Create Instagram items from products
+            allImages.forEach((product, index) => {
+                const instagramItem = document.createElement('div');
+                instagramItem.className = 'flex-shrink-0 w-48 h-48 md:w-52 md:h-52 lg:w-56 lg:h-56 relative overflow-hidden rounded-xl shadow-lg cursor-pointer transition-transform duration-300 hover:scale-105';
+
+                instagramItem.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-br from-purple-500/80 via-pink-500/80 to-orange-500/80 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <i class="fab fa-instagram text-white text-4xl"></i>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 bg-black/50 text-white p-2 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                        <p class="text-sm font-medium truncate">${product.name}</p>
+                        <p class="text-xs opacity-75">${product.price.toFixed(2)}</p>
+                    </div>
+                `;
+
+                // Add click handler
+                instagramItem.addEventListener('click', () => {
+                    alert(`Opening Instagram post for ${product.name}`);
+                    // Here you would typically open the actual Instagram post
+                });
+
+                instagramTrack.appendChild(instagramItem);
+            });
+
+            // Add Tailwind animation classes
+            instagramTrack.className = 'flex gap-4 animate-scroll-left hover:pause-animation';
+            
+            // Start the animation with CSS
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes scroll-left {
+                    0% { transform: translateX(0); }
+                    100% { transform: translateX(-50%); }
+                }
+                .animate-scroll-left {
+                    animation: scroll-left 30s linear infinite;
+                }
+                .pause-animation:hover {
+                    animation-play-state: paused;
+                }
+                @media (max-width: 768px) {
+                    .animate-scroll-left {
+                        animation-duration: 25s;
+                    }
+                }
+                @media (max-width: 640px) {
+                    .animate-scroll-left {
+                        animation-duration: 20s;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+
+        // Initialize Instagram slider when DOM is ready
+        document.addEventListener('DOMContentLoaded', initInstagramSlider);
+
+        // Reinitialize if the page is loaded from cache
+        window.addEventListener('pageshow', (event) => {
+            if (event.persisted) {
+                initInstagramSlider();
+            }
+        });
 
   // Event listeners
   function setupEventListeners() {
